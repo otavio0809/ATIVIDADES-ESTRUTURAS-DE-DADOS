@@ -1,0 +1,93 @@
+  class Node:
+    def __init__(self, content): 
+        self.content = content
+        self.left = None
+        self.right = None
+
+    def __str__(self):
+        return self.content
+        
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+      
+    def getRoot(self):
+        return self.root
+     
+    def inOrder(self, root):
+        if root is None:
+            return
+        self.inOrder(root.left)
+        print(root)
+        self.inOrder(root.right)
+
+    def preOrder(self, root):
+        if root is None:
+            return
+        print(root)
+        self.preOrder(root.left)
+        self.preOrder(root.right)
+
+    def postOrder(self, root):
+        if root is None:
+            return
+        self.postOrder(root.left)
+        self.postOrder(root.right)
+        print(root)
+         
+    def insert(self, root, newContent):
+        if root is None:
+            return Node(newContent)
+        if newContent < root.content:
+            root.left = self.insert(root.left, newContent)
+        else:
+            root.right = self.insert(root.right, newContent)
+        return root
+    
+    def search(self, root, target):
+        if root is None:
+            return False
+        if root.content == target:
+            return True
+        if target < root.content:
+            return self.search(root.left, target)
+        else:
+            return self.search(root.right, target)
+
+# Interação com o usuário
+tree = BinaryTree()
+
+def menu():
+    while True:
+        print("\n📞 Agenda Telefônica")
+        print("1. Adicionar contato")
+        print("2. Ver contatos em ordem alfabética")
+        print("3. Procurar contato")
+        print("4. Sair")
+
+        choice = input("Escolha uma opção: ")
+
+        if choice == "1":
+            nome = input("Digite o nome do contato: ")
+            tree.root = tree.insert(tree.getRoot(), nome)
+            print(f"✅ Contato '{nome}' adicionado.")
+
+        elif choice == "2":
+            print("\n📋 Contatos em ordem alfabética:")
+            tree.inOrder(tree.getRoot())
+
+        elif choice == "3":
+            nome = input("Digite o nome a procurar: ")
+            found = tree.search(tree.getRoot(), nome)
+            if found:
+                print(f"🔎 Contato '{nome}' encontrado!")
+            else:
+                print(f"❌ Contato '{nome}' não está na agenda.")
+
+        elif choice == "4":
+            print("👋 Saindo...")
+            break
+        else:
+            print("Opção inválida!")
+
+menu()
