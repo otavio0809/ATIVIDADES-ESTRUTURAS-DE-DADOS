@@ -59,7 +59,7 @@ tree = BinaryTree()
 
 def menu():
     while True:
-        print("\n📞 Agenda Telefônica")
+        print("\n Agenda Telefônica")
         print("1. Adicionar contato")
         print("2. Ver contatos em ordem alfabética")
         print("3. Procurar contato")
@@ -70,22 +70,22 @@ def menu():
         if choice == "1":
             nome = input("Digite o nome do contato: ")
             tree.root = tree.insert(tree.getRoot(), nome)
-            print(f"✅ Contato '{nome}' adicionado.")
+            print(f"Contato '{nome}' adicionado.")
 
         elif choice == "2":
-            print("\n📋 Contatos em ordem alfabética:")
+            print("\n Contatos em ordem alfabética:")
             tree.inOrder(tree.getRoot())
 
         elif choice == "3":
             nome = input("Digite o nome a procurar: ")
             found = tree.search(tree.getRoot(), nome)
             if found:
-                print(f"🔎 Contato '{nome}' encontrado!")
+                print(f" Contato '{nome}' encontrado!")
             else:
-                print(f"❌ Contato '{nome}' não está na agenda.")
+                print(f" Contato '{nome}' não está na agenda.")
 
         elif choice == "4":
-            print("👋 Saindo...")
+            print(" Saindo")
             break
         else:
             print("Opção inválida!")
